@@ -1,5 +1,6 @@
 package com.miyang.latte.ec.main.personal;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.miyang.latte.app.AccountManager;
+import com.miyang.latte.app.IUserChecker;
 import com.miyang.latte.delegates.LatteDelegate;
 import com.miyang.latte.delegates.bottom.BottomItemDelegate;
 import com.miyang.latte.ec.R;
@@ -44,7 +47,6 @@ public class PersonalDelegate extends BottomItemDelegate {
     @BindView(R2.id.rv_personal_setting)
     RecyclerView mRvSettings = null;
 
-
     @Override
     public Object setLayout() {
         return R.layout.delegate_personal;
@@ -52,6 +54,20 @@ public class PersonalDelegate extends BottomItemDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
+        AccountManager.checkAccount(new IUserChecker() {
+            @Override
+            public void onSignIn() {//已经登录
+                Toast.makeText(getContext(),"已经登录",Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onNotSignIn() {//没有登录
+                Toast.makeText(getContext(),"没有登录",Toast.LENGTH_LONG).show();
+            }
+        });
+
+
         //  从缓存取出审核状态进行判断
         if (IsShopActivate == 1) {
             delegate = new UploadImageView();
@@ -74,8 +90,11 @@ public class PersonalDelegate extends BottomItemDelegate {
         mRvSettings.setLayoutManager(manager);
         final ListAdapter adapter = new ListAdapter(data);
         mRvSettings.setAdapter(adapter);
-        mRvSettings.addOnItemTouchListener(new PersonalClickListener(this));
+        mRvSettings.addOnItemTouchListener(new PersonalClickListener(PersonalDelegate.this));
         //testRestClient();
+
+
+
     }
 
     private void testRestClient() {

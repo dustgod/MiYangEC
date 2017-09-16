@@ -48,10 +48,15 @@
             android:layout_width="300dp"
             android:layout_height="180dp"
             android:layout_marginTop="20dp"
-            android:background="@android:color/holo_orange_dark">
+           >
+            <ImageView
+                android:id="@+id/img_upload_front"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/card_bg"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/img_upload_front"
+                android:id="@+id/btn_upload_front"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_centerHorizontal="true"
@@ -59,6 +64,7 @@
                 android:src="@mipmap/avatar" />
 
             <TextView
+                android:id="@+id/tv_upload_front"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -74,10 +80,16 @@
             android:layout_width="300dp"
             android:layout_height="180dp"
             android:layout_marginTop="20dp"
-            android:background="@android:color/holo_orange_dark">
+          >
+            <ImageView
+                android:id="@+id/img_upload_opposite"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:src="@drawable/card_bg"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/img_upload_opposite"
+                android:id="@+id/btn_upload_opposite"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_centerHorizontal="true"
@@ -85,6 +97,7 @@
                 android:src="@mipmap/avatar" />
 
             <TextView
+                android:id="@+id/tv_upload_opposite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
